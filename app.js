@@ -52,25 +52,26 @@ phraseDiv.innerHTML = addPhraseToDisplay(phraseArray);
 
 
 
-// // Listen for the onscreen keyboard to be clicked
-// qwertyDiv.addEventListener('click', (e) => {
-
-// });
-
-
-
 // // check if a letter is in the phrase
-// const checkLetter = buttonPressed  => {
+// const checkLetter = buttonClicked  => {
 //     const li = document.querySelector('.tries');
 //     const match = '';
     
-//     for (let i = 0; i <li.length; i++) {
+//     for (let i = 0; i < letters.length; i++) {
 //         match += li[i];
 //     }
 // }
+
+
+// // Listen for the onscreen keyboard to be clicked
+// qwertyDiv.addEventListener('click', (e) => {
+//     e.target.button
+// });
 
 
 // // check if the game has been won or lost
 // const checkWin = () => {
 
 // }
+
+
