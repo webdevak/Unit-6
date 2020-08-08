@@ -48,6 +48,9 @@ const addPhraseToDisplay = arr => {
     let li = character;
     return li;
 }
+phraseDiv.innerHTML = addPhraseToDisplay(phraseArray);
+
+
 
 // // Listen for the onscreen keyboard to be clicked
 // qwertyDiv.addEventListener('click', (e) => {
