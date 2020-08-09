@@ -32,7 +32,7 @@ const phrases = [
 
 const getRandomPhraseAsArray = arr => {
     // This function randomly chooses a phrase from the phrases array.
-    let randomNumber =  Math.floor(Math.random() * arr.length);
+    let randomNumber =  Math.floor(Math.random() * phrases.length);
     let randomPhrase = phrases[randomNumber];
     let randomCharacters = randomPhrase.split('',);
     return randomCharacters;
@@ -43,12 +43,22 @@ const phraseArray = getRandomPhraseAsArray(phrases);
 
 //  // adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
-    let character = '';
-    const li = document.createElement('li');
-     for (let i = 0; i < arr.length; i++) {
-        character += `<li>${arr[i]}</li>`;
+    
+    
+     for (let i = 0; i < phraseArray.length; i++) {
+         let characters = phraseArray[i];
+         const li = document.createElement('li');
+         li.textContent = characters;
+         const ul = document.querySelector('#phrase ul');
+         ul.qppendChild(li);
+         if (li !== " ") {
+            liPhrase.className.add('letter');
+        } else if (li === " ") {
+            liPhrase.className.add('space');
+        }
+    
     }
-    return character;
+    return li;
 }
 console.log(addPhraseToDisplay(phraseArray));
 
