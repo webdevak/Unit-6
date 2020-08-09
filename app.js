@@ -1,8 +1,8 @@
+// Selected variables
 const phraseDiv = document.querySelector('#phrase');
 const qwertyDiv = document.querySelector('#qwerty');
 const missed = 0;
 const overLayDiv = document.querySelector('#overlay');
-const ul = document.querySelector('ul');
 
 
 
@@ -34,38 +34,39 @@ const getRandomPhraseAsArray = arr => {
     // This function randomly chooses a phrase from the phrases array.
     let randomNumber =  Math.floor(Math.random() * arr.length);
     let randomPhrase = phrases[randomNumber];
-    return randomPhrase;
+    let randomCharacters = randomPhrase.split('',);
+    return randomCharacters;
 }
 
 const phraseArray = getRandomPhraseAsArray(phrases);
 
- // adds the letters of a string to the display
+
+//  // adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
     let character = '';
+    const li = document.createElement('li');
      for (let i = 0; i < arr.length; i++) {
         character += `<li>${arr[i]}</li>`;
     }
-    let li = character;
-    return li;
+    return character;
 }
-phraseDiv.innerHTML = addPhraseToDisplay(phraseArray);
-
+console.log(addPhraseToDisplay(phraseArray));
 
 
 // // check if a letter is in the phrase
 // const checkLetter = buttonClicked  => {
-//     const li = document.querySelector('.tries');
-//     const match = '';
-    
-//     for (let i = 0; i < letters.length; i++) {
-//         match += li[i];
+//     buttonClicked.className = 'letter';
+//     for (let i = 0; i < buttonClicked.length; i++) {
+       
 //     }
+    
 // }
 
 
 // // Listen for the onscreen keyboard to be clicked
 // qwertyDiv.addEventListener('click', (e) => {
-//     e.target.button
+//     e.target.button;
+
 // });
 
 
