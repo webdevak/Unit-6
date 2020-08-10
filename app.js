@@ -4,6 +4,8 @@ const qwertyDiv = document.querySelector('#qwerty');
 const missed = 0;
 const overLayDiv = document.querySelector('#overlay');
 
+const li = document.createElement('li');
+
 
 
 const startButton = document.querySelector(".btn__reset");
@@ -44,7 +46,6 @@ const phraseArray = getRandomPhraseAsArray(phrases);
 //  // adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
     
-    
      for (let i = 0; i < phraseArray.length; i++) {
          let characters = phraseArray[i];
          const li = document.createElement('li');
@@ -58,24 +59,38 @@ const addPhraseToDisplay = arr => {
         ul.appendChild(li);
 }
 }
-console.log(addPhraseToDisplay(phraseArray));
+addPhraseToDisplay(phraseArray);
+
+// // // check if a letter is in the phrase
+function checkLetter (button) {
+   
+    let letters = document.querySelector('.letter')
+    for (let i = 0; i < letters.length; i++) {
+        const li = letters[i];
+      if (button == li ) {
+        li.classList.add('show');
+       }   else{
+           null
+       }
+    }
+    const matchingLetter = li.textContent; 
+    return matchingLetter;
+}
 
 
-// // check if a letter is in the phrase
-// const checkLetter = buttonClicked  => {
-//     buttonClicked.className = 'letter';
-//     for (let i = 0; i < buttonClicked.length; i++) {
-       
-//     }
-    
-// }
+const button = document.querySelector('button');
 
+// // // Listen for the onscreen keyboard to be clicked
+qwertyDiv.addEventListener('click', (e) => {
+    const button = e.target;
+    if (button) {
+        button.classList.add('chosen')
+    }
+    const letterFound = checkLetter(button);
+    return letterFound;
 
-// // Listen for the onscreen keyboard to be clicked
-// qwertyDiv.addEventListener('click', (e) => {
-//     e.target.button;
+});
 
-// });
 
 
 // // check if the game has been won or lost
