@@ -1,7 +1,7 @@
 // Selected variables
 const phraseDiv = document.getElementById('phrase');
 const qwertyDiv = document.getElementById('qwerty');
-const missed = 0;
+let missed = 0;
 const overLayDiv = document.querySelector('#overlay');
 
 
@@ -13,10 +13,10 @@ startButton.addEventListener('click', (e) => {
     const button = e.target;
     if (button) {
     overLayDiv.style.display = 'none';
-} else if (missed = 0) {
-    overLayDiv.style.display = '';
+} else if (missed > 4) {
+    overLayDiv.style.display = flex;
 } else {
-    overLayDiv.style.display = '';
+    overLayDiv.style.display = overLayDiv;
 }
 
 });
@@ -69,9 +69,9 @@ function checkLetter (button) {
         const li = letters[i];
       if (button.textContent === li.textContent.toLowerCase() ) {
        match = li.classList.add('show');
-       }  
-       return match;
+       } 
     }
+    return match;
 }
 
 
@@ -80,27 +80,53 @@ const button = document.querySelector('button');
 // // // Listen for the onscreen keyboard to be clicked
 qwertyDiv.addEventListener('click', (e) => {
     const button = e.target;
-    if (button) {
-        button.classList.add('chosen')
-    }
+    const buttons = document.querySelector('button');
+    if (button.tagName === 'BUTTON') {
+        button.classList.add('chosen');
+    } 
     const letterFound =  checkLetter(button);
-    return letterFound;
-     
+    const letters = document.querySelectorAll('.letter');
+    const show = document.querySelectorAll('.show');
     
+    if (letterFound.className !== '.show' && button.tagName === 'BUTTON') {
+        const li = document.querySelector('.tries');
+        missed ++;
+        li.remove();
+    }
+
+
+checkWin();
+console.log(checkWin());
+return letterFound;    
+
+
 
 });
 
 
 
 // // check if the game has been won or lost
-// function checkWin () {
-//     const letters = document.querySelectorAll('.letter');
-//     const show = document.querySelectorAll('.show');
+function checkWin () {
+    const letters = document.querySelectorAll('.letter');
+    const show = document.querySelectorAll('.show');
+    const liLetters = letters;
+    const liShow = show;
+    const lost = `You Lose`;
+    const win = `You Win`;
+   
+  if  (liLetters.length === liShow.length) {
+        const overLayDiv = document.querySelector('#overlay');
+        overLayDiv.classList.remove("start");
+        overLayDiv.classList.add("win");
+        overLayDiv.innerHTML = `<h1>${win}</h1>`;
+        overLayDiv.style.display = 'flex';
+    } else if   (missed > 4) {
+        overLayDiv.classList.remove("start");
+        overLayDiv.classList.add("lose");
+        overLayDiv.innerHTML = `<h1>${lost}</h1>`;
+        overLayDiv.style.display = 'flex';
+    }
 
-//     if (letters.length == show.length) {
-//         const winOverlay = document.createElement('#OverLay');
-//     }
-
-// }
+}
 
 
