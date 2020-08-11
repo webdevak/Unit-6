@@ -85,10 +85,10 @@ qwertyDiv.addEventListener('click', (e) => {
         button.classList.add('chosen');
     } 
     const letterFound =  checkLetter(button);
-    const letters = document.querySelectorAll('.letter');
-    const show = document.querySelectorAll('.show');
+    const letters = document.querySelector('.letter');
+    const show = document.querySelector('.show');
     
-    if (letterFound.className !== '.show' && button.tagName === 'BUTTON') {
+    if (letterFound === show && button.tagName === 'BUTTON') {
         const li = document.querySelector('.tries');
         missed ++;
         li.remove();
@@ -114,7 +114,7 @@ function checkWin () {
     const lost = `You Lose`;
     const win = `You Win`;
    
-  if  (liLetters.length === liShow.length) {
+  if  (liLetters.length == liShow.length) {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
