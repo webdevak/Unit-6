@@ -1,10 +1,9 @@
 // Selected variables
-const phraseDiv = document.querySelector('#phrase');
-const qwertyDiv = document.querySelector('#qwerty');
+const phraseDiv = document.getElementById('phrase');
+const qwertyDiv = document.getElementById('qwerty');
 const missed = 0;
 const overLayDiv = document.querySelector('#overlay');
 
-const li = document.createElement('li');
 
 
 
@@ -24,11 +23,11 @@ startButton.addEventListener('click', (e) => {
 
 
 const phrases = [
-    'Its not what you know but who you know',
-    'Houston We have a problem',
-    'If at first you dont succeed try try again',
-    'A Dime a Dozen',
-    'Back to square one'
+    'ITS NOT WHAT YOU KNOW BUT WHO YOU KNOW',
+    'HOUSTON WE HAVE A PROBLEM',
+    'IF AT FIRST YOU DONT SUCCEED TRY TRY AGAIN',
+    'A DIME A DOZEN',
+    'BACK TO SQUARE ONE'
 ]
 
 
@@ -64,17 +63,15 @@ addPhraseToDisplay(phraseArray);
 // // // check if a letter is in the phrase
 function checkLetter (button) {
    
-    let letters = document.querySelector('.letter')
+    let letters = document.querySelectorAll('.letter')
+    let match = '';
     for (let i = 0; i < letters.length; i++) {
         const li = letters[i];
-      if (button == li ) {
-        li.classList.add('show');
-       }   else{
-           null
-       }
+      if (button.textContent === li.textContent.toLowerCase() ) {
+       match = li.classList.add('show');
+       }  
+       return match;
     }
-    const matchingLetter = li.textContent; 
-    return matchingLetter;
 }
 
 
@@ -86,15 +83,23 @@ qwertyDiv.addEventListener('click', (e) => {
     if (button) {
         button.classList.add('chosen')
     }
-    const letterFound = checkLetter(button);
+    const letterFound =  checkLetter(button);
     return letterFound;
+     
+    
 
 });
 
 
 
 // // check if the game has been won or lost
-// const checkWin = () => {
+// function checkWin () {
+//     const letters = document.querySelectorAll('.letter');
+//     const show = document.querySelectorAll('.show');
+
+//     if (letters.length == show.length) {
+//         const winOverlay = document.createElement('#OverLay');
+//     }
 
 // }
 
