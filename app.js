@@ -1,8 +1,9 @@
 // Selected variables
+const overLayDiv = document.querySelector('#overlay');
 const phraseDiv = document.getElementById('phrase');
 const qwertyDiv = document.getElementById('qwerty');
 let missed = 0;
-const overLayDiv = document.querySelector('#overlay');
+const button = document.querySelector('button');
 
 
 
@@ -75,32 +76,29 @@ function checkLetter (button) {
 }
 
 
-const button = document.querySelector('button');
+
 
 // // // Listen for the onscreen keyboard to be clicked
 qwertyDiv.addEventListener('click', (e) => {
+
     const button = e.target;
     const buttons = document.querySelector('button');
+    
     if (button.tagName === 'BUTTON') {
         button.classList.add('chosen');
     } 
+
     const letterFound =  checkLetter(button);
-    const letters = document.querySelector('.letter');
-    const show = document.querySelector('.show');
+    const letters = document.querySelectorAll('.letter');
+    const show = document.querySelectorAll('.show');
     
-    if (letterFound === show && button.tagName === 'BUTTON') {
+    if (letterFound.className !== 'show' && button.tagName === 'BUTTON') {
         const li = document.querySelector('.tries');
         missed ++;
         li.remove();
     }
-
-
 checkWin();
-console.log(checkWin());
 return letterFound;    
-
-
-
 });
 
 
