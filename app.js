@@ -1,7 +1,7 @@
 // Selected variables
 const overLayDiv = document.querySelector('#overlay');
 const phraseDiv = document.getElementById('phrase');
-const qwertyDiv = document.getElementById('qwerty');
+const qwerty = document.getElementById('qwerty');
 let missed = 0;
 const button = document.querySelector('button');
 
@@ -70,58 +70,64 @@ function checkLetter (button) {
         const li = letters[i];
       if (button.textContent === li.textContent.toLowerCase() ) {
        match = li.classList.add('show');
-       } 
+       } else {
+           null;
+       }
     }
     return match;
 }
 
 
-
-
 // // // Listen for the onscreen keyboard to be clicked
-qwertyDiv.addEventListener('click', (e) => {
+qwerty.addEventListener('click', (event) => {
+    const letter = document.querySelector('button');
+    const div = document.querySelectorAll('keyrow');
+        const button = event.target;
 
-    const button = e.target;
-    const buttons = document.querySelector('button');
-    
     if (button.tagName === 'BUTTON') {
         button.classList.add('chosen');
     } 
-
-    const letterFound =  checkLetter(button);
-    const letters = document.querySelectorAll('.letter');
-    const show = document.querySelectorAll('.show');
-    
-    if (letterFound.className !== 'show' && button.tagName === 'BUTTON') {
-        const li = document.querySelector('.tries');
-        missed ++;
-        li.remove();
+    if (button.className === 'chosen') {
+        button.disabled = true;
     }
-checkWin();
-return letterFound;    
+    if (button.className === 'space'){
+        button.disabled = true;
+    }
+    
+    const img = document.querySelector('img');
+    const letterFound = checkLetter(button);
+    const li = document.querySelector('.tries');
+
+        if (button.buttons !== letterFound) {
+             img.setAttribute("src", "images/lostHeart.png")
+             li.appendChild('img');
+             missed++;
+        }
+    
+    checkWin();
+    return letterFound; 
 });
 
 
 
-// // check if the game has been won or lost
+// // // check if the game has been won or lost
 function checkWin () {
     const letters = document.querySelectorAll('.letter');
     const show = document.querySelectorAll('.show');
     const liLetters = letters;
     const liShow = show;
-    const lost = `You Lose`;
-    const win = `You Win`;
+  
    
-  if  (liLetters.length == liShow.length) {
+  if  (liLetters.length === liShow.length) {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
-        overLayDiv.innerHTML = `<h1>${win}</h1>`;
+        overLayDiv.innerHTML = `<h1>You Win the letters were: ${phraseArray}</h1>`;
         overLayDiv.style.display = 'flex';
     } else if   (missed > 4) {
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("lose");
-        overLayDiv.innerHTML = `<h1>${lost}</h1>`;
+        overLayDiv.innerHTML = "<h1>You Lose</h1>";
         overLayDiv.style.display = 'flex';
     }
 
