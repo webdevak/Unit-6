@@ -7,7 +7,6 @@ const button = document.querySelector('button');
 
 
 
-
 const startButton = document.querySelector(".btn__reset");
 // // Listen for the start game button to be pressed
 startButton.addEventListener('click', (e) => {
@@ -77,10 +76,6 @@ function checkLetter (button) {
     return match;
 }
 
-// document.addEventListener('click', (event) => {
-//     console.log(event.target);
-// });
-
 
 
 // // // Listen for the onscreen keyboard to be clicked
@@ -101,14 +96,14 @@ qwerty.addEventListener('click', (event) => {
     
     const img = document.querySelector('img');
     const letterFound = checkLetter(button);
-    const li = document.querySelector('.tries');
- 
+    let liHeart = document.querySelector(".tries > img[src= 'images/liveHeart.png']");
+    
 
     if (button.buttons !== letterFound) {
-        const lostHeart = img.setAttribute("src", "images/lostHeart.png");
+        liHeart.setAttribute("src", "images/lostHeart.png");
         missed++;
         } 
-        
+
     checkWin();
     return letterFound; 
 });
@@ -121,12 +116,12 @@ function checkWin () {
     const show = document.querySelectorAll('.show');
     const liLetters = letters;
     const liShow = show;
-  
-   
+    
   if  (liLetters.length === liShow.length) {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
+        reset.style.display = 'flex';
         overLayDiv.innerHTML = `<h1>You Win the letters were: ${phraseArray}</h1>`;
         overLayDiv.style.display = 'flex';
     } else if   (missed > 4) {
@@ -139,3 +134,13 @@ function checkWin () {
 }
 
 
+
+// const resetButton = document.getElementById('reset');
+// // // // Listen for the reset game button to be pressed
+// resetButton.addEventListener('click', (e) => {
+//     const button = e.target;
+//  if (missed > 4) {
+//     button = addPhraseToDisplay(phraseArray);
+// } 
+
+// });
