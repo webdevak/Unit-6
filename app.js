@@ -77,11 +77,16 @@ function checkLetter (button) {
     return match;
 }
 
+// document.addEventListener('click', (event) => {
+//     console.log(event.target);
+// });
+
+
 
 // // // Listen for the onscreen keyboard to be clicked
 qwerty.addEventListener('click', (event) => {
     const letter = document.querySelector('button');
-    const div = document.querySelectorAll('keyrow');
+    const div = qwerty.querySelector('div.keyrow');
         const button = event.target;
 
     if (button.tagName === 'BUTTON') {
@@ -90,20 +95,20 @@ qwerty.addEventListener('click', (event) => {
     if (button.className === 'chosen') {
         button.disabled = true;
     }
-    if (button.className === 'space'){
-        button.disabled = true;
+    if (button.className === 'keyrow' ){
+        button = false;
     }
     
     const img = document.querySelector('img');
     const letterFound = checkLetter(button);
     const li = document.querySelector('.tries');
+ 
 
-        if (button.buttons !== letterFound) {
-             img.setAttribute("src", "images/lostHeart.png")
-             li.appendChild('img');
-             missed++;
-        }
-    
+    if (button.buttons !== letterFound) {
+        const lostHeart = img.setAttribute("src", "images/lostHeart.png");
+        missed++;
+        } 
+        
     checkWin();
     return letterFound; 
 });
