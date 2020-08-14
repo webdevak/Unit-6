@@ -121,7 +121,6 @@ function checkWin () {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
-        reset.style.display = 'flex';
         overLayDiv.innerHTML = `<h1>You Win the letters were: ${phraseArray}</h1>`;
         overLayDiv.style.display = 'flex';
     } else if   (missed > 4) {
@@ -129,6 +128,7 @@ function checkWin () {
         overLayDiv.classList.add("lose");
         overLayDiv.innerHTML = "<h1>You Lose</h1>";
         overLayDiv.style.display = 'flex';
+
     }
 
 }
