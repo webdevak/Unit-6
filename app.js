@@ -146,26 +146,10 @@ function checkWin () {
 
 // // // Listen for the reset game button to be pressed
 resetButton.addEventListener('click', (e) => {
-    // const list = document.querySelectorAll('.letter');
-    const show = document.querySelectorAll('.show');
-    let loHeart = document.querySelectorAll(".tries > img[src= 'images/lostHeart.png']");
-    const chosenButtons = document.querySelector('button.chosen');
+    
       e.target;
     if (e.target = resetButton) {
-        overLayDiv.classList.remove("lose");
-        overLayDiv.classList.remove("win");
-        resetButton.style.display = 'none';
-        overLayDiv.style.display = 'none';
-        console.log(missed = 0);
-        button.classList.remove("chosen");
-          
-          for (let i = 0; i < 5; i++) {
-            loHeart[i].setAttribute("src", "images/liveHeart.png");
-        }
-          if (show) {
-        show.className.remove("show");
-        chosenButtons.classList.remove("chosen");
-    }
+        location.reload();
      }
 });
 
