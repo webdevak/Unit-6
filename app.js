@@ -4,6 +4,10 @@ const phraseDiv = document.getElementById('phrase');
 const qwerty = document.getElementById('qwerty');
 let missed = 0;
 const button = document.querySelector('button');
+const resetButton = document.createElement('button');
+    resetButton.textContent = 'Reset Game';
+    resetButton.id = "reset";
+    
 
 
 
@@ -94,6 +98,8 @@ qwerty.addEventListener('click', (event) => {
         button = false;
     }
     
+console.log(button);
+
     const img = document.querySelector('img');
     const letterFound = checkLetter(button);
     let liHeart = document.querySelector(".tries > img[src= 'images/liveHeart.png']");
@@ -117,30 +123,49 @@ function checkWin () {
     const liLetters = letters;
     const liShow = show;
     
+
+    
   if  (liLetters.length === liShow.length) {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
         overLayDiv.innerHTML = `<h1>You Win the letters were: ${phraseArray}</h1>`;
         overLayDiv.style.display = 'flex';
+        overLayDiv.appendChild(resetButton);
     } else if   (missed > 4) {
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("lose");
         overLayDiv.innerHTML = "<h1>You Lose</h1>";
         overLayDiv.style.display = 'flex';
+        overLayDiv.appendChild(resetButton);
 
     }
 
 }
 
 
+// // // Listen for the reset game button to be pressed
+resetButton.addEventListener('click', (e) => {
+    // const list = document.querySelectorAll('.letter');
+    const show = document.querySelectorAll('.show');
+    let loHeart = document.querySelectorAll(".tries > img[src= 'images/lostHeart.png']");
+    const chosenButtons = document.querySelector('button.chosen');
+      e.target;
+    if (e.target = resetButton) {
+        overLayDiv.classList.remove("lose");
+        overLayDiv.classList.remove("win");
+        resetButton.style.display = 'none';
+        overLayDiv.style.display = 'none';
+        console.log(missed = 0);
+        button.classList.remove("chosen");
+          
+          for (let i = 0; i < 5; i++) {
+            loHeart[i].setAttribute("src", "images/liveHeart.png");
+        }
+          if (show) {
+        show.className.remove("show");
+        chosenButtons.classList.remove("chosen");
+    }
+     }
+});
 
-// const resetButton = document.getElementById('reset');
-// // // // Listen for the reset game button to be pressed
-// resetButton.addEventListener('click', (e) => {
-//     const button = e.target;
-//  if (missed > 4) {
-//     button = addPhraseToDisplay(phraseArray);
-// } 
-
-// });
