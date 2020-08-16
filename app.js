@@ -1,4 +1,4 @@
-// Selected variables
+// Global variables
 const overLayDiv = document.querySelector('#overlay');
 const phraseDiv = document.getElementById('phrase');
 const qwerty = document.getElementById('qwerty');
@@ -25,7 +25,7 @@ startButton.addEventListener('click', (e) => {
 
 });
 
-
+// Phrases
 const phrases = [
     'ITS NOT WHAT YOU KNOW BUT WHO YOU KNOW',
     'HOUSTON WE HAVE A PROBLEM',
@@ -98,7 +98,6 @@ qwerty.addEventListener('click', (event) => {
         button = false;
     }
     
-console.log(button);
 
     const img = document.querySelector('img');
     const letterFound = checkLetter(button);
@@ -123,9 +122,7 @@ function checkWin () {
     const liLetters = letters;
     const liShow = show;
     
-
-    
-  if  (liLetters.length === liShow.length) {
+    if  (liLetters.length === liShow.length) {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
