@@ -115,6 +115,7 @@ button:hover {
   color: #FFFFFF;
 }
 
+#reset,
 .btn__reset {
   padding: 8px;
   margin: 50px auto;
@@ -123,13 +124,12 @@ button:hover {
   font-size: var(--font-size-medium);
 }
 
+button,
+.btn__reset,
 #reset {
-  padding: 8px;
-  margin: 50px auto;
-  background: #FFFFFF;
-  border-radius: 5px;
-  font-size: var(--font-size-medium);
+  cursor: pointer;
 }
+
 
 /* Overlay */
 
