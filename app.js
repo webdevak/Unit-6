@@ -1,28 +1,21 @@
 // Global variables
+let missed = 0;
 const overLayDiv = document.querySelector('#overlay');
 const phraseDiv = document.getElementById('phrase');
 const qwerty = document.getElementById('qwerty');
-let missed = 0;
 const button = document.querySelector('button');
 const resetButton = document.createElement('button');
-    resetButton.textContent = 'Reset Game';
-    resetButton.id = "reset";
+resetButton.textContent = 'Reset Game';
+resetButton.id = "reset";
+ 
     
-
-
-
 const startButton = document.querySelector(".btn__reset");
 // // Listen for the start game button to be pressed
 startButton.addEventListener('click', (e) => {
     const button = e.target;
     if (button) {
     overLayDiv.style.display = 'none';
-} else if (missed > 4) {
-    overLayDiv.style.display = flex;
-} else {
-    overLayDiv.style.display = overLayDiv;
-}
-
+    }
 });
 
 // Phrases
@@ -35,118 +28,131 @@ const phrases = [
 ]
 
 
-const getRandomPhraseAsArray = arr => {
+let getRandomPhraseAsArray = arr => {
     // This function randomly chooses a phrase from the phrases array.
-    let randomNumber =  Math.floor(Math.random() * arr.length);
-    let randomPhrase = phrases[randomNumber];
+    let randomletter =  Math.floor(Math.random() * arr.length);
+    let randomPhrase = phrases[randomletter];
     let randomCharacters = randomPhrase.split('',);
     return randomCharacters;
 }
 
-const phraseArray = getRandomPhraseAsArray(phrases);
+let phraseArray = (getRandomPhraseAsArray(phrases));
 
 
-//  // adds the letters of a string to the display
-const addPhraseToDisplay = arr => {
+ // adds the letters of a string to the display ==========================
+let addPhraseToDisplay = arr => {
     
      for (let i = 0; i < phraseArray.length; i++) {
-         let characters = phraseArray[i];
+        
+        let characters = phraseArray[i];
          const li = document.createElement('li');
          li.textContent = characters;
          const ul = document.querySelector('#phrase ul');
-         if (li.textContent !== " ") {
+       
+         if (characters !== ' ') {
             li.className = 'letter';
         } else {
             li.className = 'space';
         }
         ul.appendChild(li);
+    }
 }
-}
-addPhraseToDisplay(phraseArray);
+addPhraseToDisplay();
 
-// // // check if a letter is in the phrase
+ // check if a letter is in the phrase  ====================
 function checkLetter (button) {
    
     let letters = document.querySelectorAll('.letter')
-    let match = '';
+    let match = null;
     for (let i = 0; i < letters.length; i++) {
         const li = letters[i];
-      if (button.textContent === li.textContent.toLowerCase() ) {
-       match = li.classList.add('show');
-       } else {
-           null;
+      if (button === li.textContent.toLowerCase() ) {
+       li.className += ' show';
+       match = li.textContent;
        }
     }
-    return match;
+        return match   ;
 }
 
+checkLetter();
 
-
-// // // Listen for the onscreen keyboard to be clicked
+// Listen for the onscreen keyboard to be clicked =====================
 qwerty.addEventListener('click', (event) => {
-    const letter = document.querySelector('button');
-    const div = qwerty.querySelector('div.keyrow');
-        const button = event.target;
-
+    const button = event.target;
     if (button.tagName === 'BUTTON') {
-        button.classList.add('chosen');
-    } 
-    if (button.className === 'chosen') {
-        button.disabled = true;
-    }
-    if (button.className === 'keyrow' ){
-        button = false;
-    }
-    
+        button.className = 'chosen';
+        button.disabled = 'true';
+  
+    let letterFound = checkLetter(button.textContent);
 
-    const img = document.querySelector('img');
-    const letterFound = checkLetter(button);
-    let liHeart = document.querySelector(".tries > img[src= 'images/liveHeart.png']");
-    
-
-    if (button.buttons !== letterFound) {
-        liHeart.setAttribute("src", "images/lostHeart.png");
+    if (letterFound === null) {
+    let liveHeart = document.querySelectorAll('.tries');
+    let lostHeart = document.querySelectorAll('.tries img');
+    let tries = document.querySelectorAll('.tries img');
+        tries[missed].src = "images/lostHeart.png";
         missed++;
         } 
+    }
 
-    checkWin();
-    return letterFound; 
+    checkWin()
+   
 });
 
-
-
-// // // check if the game has been won or lost
+//  check if the game has been won or lost===================
 function checkWin () {
-    const letters = document.querySelectorAll('.letter');
-    const show = document.querySelectorAll('.show');
-    const liLetters = letters;
-    const liShow = show;
+   let liLetters = document.querySelectorAll('.letter');
+   let liShow = document.querySelectorAll('.show');
+    const lose = '<h2>You Lose</h2>'
     
     if  (liLetters.length === liShow.length) {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
-        overLayDiv.innerHTML = `<h1>You Win, The Phrase Is: ${phraseArray.join('')}</h1>`;
+        overLayDiv.innerHTML = `<h2>You Win!!</h2> <h1>The Phrase IS: ${phraseArray.join('')}</h1>
+                                <h3>Play Again!</h3>`;
         overLayDiv.style.display = 'flex';
         overLayDiv.appendChild(resetButton);
+        resetGame();
     } else if   (missed > 4) {
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("lose");
-        overLayDiv.innerHTML = "<h1>You Lose</h1>";
+        overLayDiv.innerHTML = `${lose} <h1>Try Again!</h1>`;
         overLayDiv.style.display = 'flex';
         overLayDiv.appendChild(resetButton);
-
+        resetGame();
     }
 
 }
 
+// Reset game function ===================================
 
-// // // Listen for the reset game button to be pressed
+function resetGame() {
+    let keyboard = document.querySelectorAll('.keyrow button');
+    let tries = document.querySelectorAll('#scoreboard img');
+    let ul = document.querySelector('#phrase ul');
+
+    for (let i = 0; i < keyboard.length; i++) {
+        keyboard[i].className = '';
+        keyboard[i].disabled = false;
+    }
+    ul.innerHTML = '';
+    phraseArray = (getRandomPhraseAsArray(phrases));
+    addPhraseToDisplay(phraseArray);
+   
+    for (let i = 0; i < tries.length; i++) {
+        tries[i].src = "images/liveHeart.png";
+    }
+    missed = 0;
+
+}
+
+ // Listen for the reset game button to be pressed ===========
 resetButton.addEventListener('click', (e) => {
     
       e.target;
     if (e.target = resetButton) {
-        location.reload();
+        overLayDiv.style.display = 'none';
+        resetGame();
      }
 });
 
