@@ -108,7 +108,7 @@ function checkWin () {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
-        overLayDiv.innerHTML = `<h2>You Win!!</h2> <h1>The Phrase IS: ${phraseArray.join('')}</h1>
+        overLayDiv.innerHTML = `<h2>You Win!!</h2> <h1>The Phrase: ${phraseArray.join('')}</h1>
                                 <h3>Play Again!</h3>`;
         overLayDiv.style.display = 'flex';
         overLayDiv.appendChild(resetButton);
