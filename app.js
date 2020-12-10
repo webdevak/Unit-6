@@ -20,9 +20,9 @@ startButton.addEventListener('click', (e) => {
 
 // Phrases
 const phrases = [
-    'ITS NOT WHAT YOU KNOW BUT WHO YOU KNOW',
+    'BETTER LATE THAN NEVER',
     'HOUSTON WE HAVE A PROBLEM',
-    'IF AT FIRST YOU DONT SUCCEED TRY TRY AGAIN',
+    'JUST DO IT',
     'A DIME A DOZEN',
     'BACK TO SQUARE ONE'
 ]
@@ -108,7 +108,7 @@ function checkWin () {
         const overLayDiv = document.querySelector('#overlay');
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
-        overLayDiv.innerHTML = `<h2>You Win!!</h2> <h1>The Phrase: ${phraseArray.join('')}</h1>
+        overLayDiv.innerHTML = `<h2>You Win!!</h2> <h1>Phrase: ${phraseArray.join('')}</h1>
                                 <h3>Play Again!</h3>`;
         overLayDiv.style.display = 'flex';
         overLayDiv.appendChild(resetButton);
