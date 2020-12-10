@@ -109,7 +109,7 @@ function checkWin () {
         overLayDiv.classList.remove("start");
         overLayDiv.classList.add("win");
         overLayDiv.innerHTML = `<h2>You Win!!</h2> <h1>Phrase: ${phraseArray.join('')}</h1>
-                                <h2>Play Again!</h2>`;
+                                <h1>Play Again!</h1>`;
         overLayDiv.style.display = 'flex';
         overLayDiv.appendChild(resetButton);
         resetGame();
